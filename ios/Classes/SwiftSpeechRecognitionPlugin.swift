@@ -2,10 +2,11 @@ import Flutter
 import UIKit
 import Speech
 
+@available(iOS 10.0, *)
 public class SwiftSpeechRecognitionPlugin: NSObject, FlutterPlugin, SFSpeechRecognizerDelegate {
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "speech_recognition", binaryMessenger: registrar.messenger())
-    let instance = SwiftSpeechRecognitionPlugin()
+    let instance = SwiftSpeechRecognitionPlugin(channel: channel)
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
@@ -22,7 +23,10 @@ public class SwiftSpeechRecognitionPlugin: NSObject, FlutterPlugin, SFSpeechReco
 
   private let audioEngine = AVAudioEngine()
 
-
+  init(channel:FlutterMethodChannel){
+    speechChannel = channel
+    super.init()
+  }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     //result("iOS " + UIDevice.current.systemVersion)
@@ -61,11 +65,13 @@ public class SwiftSpeechRecognitionPlugin: NSObject, FlutterPlugin, SFSpeechReco
         case .notDetermined:
           result(false)
         }
+        print("SFSpeechRecognizer.requestAuthorization \(authStatus.rawValue)")
       }
     }
   }
 
   private func startRecognition(lang: String, result: FlutterResult) {
+    print("startRecognition...")
     if audioEngine.isRunning {
       audioEngine.stop()
       recognitionRequest?.endAudio()
@@ -121,11 +127,11 @@ public class SwiftSpeechRecognitionPlugin: NSObject, FlutterPlugin, SFSpeechReco
 
       if let result = result {
         print("Speech : \(result.bestTranscription.formattedString)")
-        self.speechChannel?.invokeMethod("onSpeech", arguments: result.bestTranscription.formattedString)
+        self.speechChannel?.invokeMethod("speech.onSpeech", arguments: result.bestTranscription.formattedString)
         isFinal = result.isFinal
         if isFinal {
           self.speechChannel!.invokeMethod(
-             "onRecognitionComplete",
+             "speech.onRecognitionComplete",
              arguments: result.bestTranscription.formattedString
           )
         }
@@ -139,8 +145,8 @@ public class SwiftSpeechRecognitionPlugin: NSObject, FlutterPlugin, SFSpeechReco
       }
     }
 
-    let RecognitionFormat = inputNode.outputFormat(forBus: 0)
-    inputNode.installTap(onBus: 0, bufferSize: 1024, format: RecognitionFormat) {
+    let recognitionFormat = inputNode.outputFormat(forBus: 0)
+    inputNode.installTap(onBus: 0, bufferSize: 1024, format: recognitionFormat) {
       (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
       self.recognitionRequest?.append(buffer)
     }
@@ -148,7 +154,7 @@ public class SwiftSpeechRecognitionPlugin: NSObject, FlutterPlugin, SFSpeechReco
     audioEngine.prepare()
     try audioEngine.start()
 
-    speechChannel!.invokeMethod("onRecognitionStarted", arguments: nil)
+    speechChannel!.invokeMethod("speech.onRecognitionStarted", arguments: nil)
   }
 
   private func getRecognizer(lang: String) -> Speech.SFSpeechRecognizer {
@@ -168,9 +174,9 @@ public class SwiftSpeechRecognitionPlugin: NSObject, FlutterPlugin, SFSpeechReco
 
   public func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
     if available {
-      speechChannel?.invokeMethod("onSpeechAvailability", arguments: true)
+      speechChannel?.invokeMethod("speech.onSpeechAvailability", arguments: true)
     } else {
-      speechChannel?.invokeMethod("onSpeechAvailability", arguments: false)
+      speechChannel?.invokeMethod("speech.onSpeechAvailability", arguments: false)
     }
   }
 }

@@ -8,7 +8,7 @@ typedef void RecognitionResultHandler(String text);
 
 /// the channel to control the speech recognition
 class SpeechRecognition {
-  final MethodChannel _channel = const MethodChannel('speech_recognition');
+  static const MethodChannel _channel = const MethodChannel('speech_recognition');
 
   static final SpeechRecognition _speech = new SpeechRecognition._internal();
 
@@ -70,8 +70,8 @@ class SpeechRecognition {
   }
 
   // define a method to handle recognition result
-  void setRecognitionResultHandler(VoidCallback handler) {
-    recognitionStartedHandler = handler;
+  void setRecognitionResultHandler(RecognitionResultHandler handler) {
+    recognitionResultHandler = handler;
   }
 
   // define a method to handle native call
