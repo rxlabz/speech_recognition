@@ -2,6 +2,8 @@
 
 Demonstrates how to use the speech_recognition plugin.
 
+![screenshot](screenshot.png)
+
 ## Usage
 
 ```dart

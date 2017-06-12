@@ -2,6 +2,8 @@
 
 A flutter plugin to use the speech recognition iOS10+ / Android 4.1+
 
+![screenshot](screenshot.png)
+
 ## Usage
 
 ```dart
