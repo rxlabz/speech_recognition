@@ -16,7 +16,7 @@ class _MyAppState extends State<MyApp> {
   bool _speechRecognitionAvailable = false;
   bool _isListening = false;
 
-  String recognized = '';
+  String transcription = '';
 
   String _currentLocale = 'en_US';
 
@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
     return new MaterialApp(
       home: new Scaffold(
         appBar: new AppBar(
-          title: new Text('Plugin example app'),
+          title: new Text('SpeechRecognition'),
         ),
         body: new Padding(
             padding: new EdgeInsets.all(8.0),
@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
                       child: new Container(
                           padding: const EdgeInsets.all(8.0),
                           color: Colors.grey.shade200,
-                          child: new Text(recognized))),
+                          child: new Text(transcription))),
                   _buildButton(
                     onPressed: _speechRecognitionAvailable && !_isListening
                         ? () => start()
@@ -111,7 +111,7 @@ class _MyAppState extends State<MyApp> {
 
   void onRecognitionStarted() => setState(() => _isListening = true);
 
-  void onRecognitionResult(String text) => setState(() => recognized = text);
+  void onRecognitionResult(String text) => setState(() => transcription = text);
 
   void onRecognitionComplete() => setState(() => _isListening = false);
 }

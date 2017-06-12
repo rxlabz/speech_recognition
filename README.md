@@ -1,21 +1,41 @@
 # speech_recognition
 
-
-A flutter plugin to use the speech recognition iOS10+ / Android 
+A flutter plugin to use the speech recognition iOS10+ / Android 4.1+
 
 ## Usage
 
 ```dart
 //..
-speech = new SpeechRecognizer()
+_speech = new SpeechRecognition();
+
+// The flutter app not only call methods on the host platform,
+// it also needs to receive method calls from host.
+_speech.setAvailabilityHandler((bool result) 
+  => setState(() => _speechRecognitionAvailable = result));
+
+// handle device current locale detection
+_speech.setCurrentLocaleHandler((String locale) =>
+ setState(() => _currentLocale = locale));
+
+_speech.setRecognitionStartedHandler(() 
+  => setState(() => _isListening = true));
+
+// this handler will be called during recognition. 
+// iOs allow to send the intermediate results,
+// On my Android device, only the final transcription is received
+_speech.setRecognitionResultHandler((String text) 
+  => setState(() => transcription = text));
+
+_speech.setRecognitionCompleteHandler(() 
+  => setState(() => _isListening = false));
 
 // 1st launch : speech recognition permission / initialization
-final isActivated = await speech.activate();
-setState(() => authorized = res);
+_speech
+    .activate()
+    .then((res) => setState(() => _speechRecognitionAvailable = res));
 //..
 
-// default locale : 'en_US'
-speech.listen(locale:'fr_FR').then((result)=> print('result : $result'));
+speech.listen(locale:_currentLocale).then((result)=> print('result : $result'));
 
 // ...
 
@@ -27,16 +47,6 @@ speech.stop();
 
 ```
 
-The flutter app not only call methods on the host platform,
-it also needs to receive method calls from host.
-
-```dart
-
-_speech.setAvailabilityHandler(onSpeechAvailability);
-_speech.setRecognitionStartedHandler(onRecognitionStarted);
-_speech.setRecognitionResultHandler(onRecognitionResult);
-_speech.setRecognitionCompleteHandler(onRecognitionComplete);
-```
 
 
 ## Permissions
@@ -55,6 +65,12 @@ infos.plist, add :
 ```
 
 ### Android
+
+```xml
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+```
+
+## Limitation
 
 ## Getting Started
 

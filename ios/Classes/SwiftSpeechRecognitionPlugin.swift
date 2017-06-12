@@ -55,6 +55,7 @@ public class SwiftSpeechRecognitionPlugin: NSObject, FlutterPlugin, SFSpeechReco
         switch authStatus {
         case .authorized:
           result(true)
+          self.speechChannel?.invokeMethod("speech.onCurrentLocale", arguments: Locale.preferredLanguages.first)
 
         case .denied:
           result(false)
