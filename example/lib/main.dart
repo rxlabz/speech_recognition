@@ -18,6 +18,8 @@ class _MyAppState extends State<MyApp> {
 
   String recognized = '';
 
+  String _currentLocale = 'en_US';
+
   @override
   initState() {
     super.initState();
@@ -29,6 +31,7 @@ class _MyAppState extends State<MyApp> {
     print('_MyAppState.activateSpeechRecognizer... ');
     _speech = new SpeechRecognition();
     _speech.setAvailabilityHandler(onSpeechAvailability);
+    _speech.setCurrentLocaleHandler(onCurrentLocale);
     _speech.setRecognitionStartedHandler(onRecognitionStarted);
     _speech.setRecognitionResultHandler(onRecognitionResult);
     _speech.setRecognitionCompleteHandler(onRecognitionComplete);
@@ -60,7 +63,7 @@ class _MyAppState extends State<MyApp> {
                     onPressed: _speechRecognitionAvailable && !_isListening
                         ? () => start()
                         : null,
-                    label: _isListening ? 'Listening...' : 'Listen',
+                    label: _isListening ? 'Listening...' : 'Listen ($_currentLocale)',
                   ),
                   _buildButton(
                     onPressed: _isListening ? () => cancel() : null,
@@ -89,7 +92,7 @@ class _MyAppState extends State<MyApp> {
       ));
 
   void start() => _speech
-      .listen(locale: "fr_FR")
+      .listen(locale: _currentLocale)
       .then((result) => print('_MyAppState.start => result ${result}'));
 
   void cancel() =>
@@ -100,6 +103,8 @@ class _MyAppState extends State<MyApp> {
 
   void onSpeechAvailability(bool result) =>
       setState(() => _speechRecognitionAvailable = result);
+
+  void onCurrentLocale(String locale) => setState(() => _currentLocale = locale);
 
   void onRecognitionStarted() => setState(() => _isListening = true);
 
