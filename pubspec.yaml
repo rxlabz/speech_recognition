@@ -1,6 +1,6 @@
 name: speech_recognition
 description: A flutter plugin to use the speech recognition on iOS and Android
-version: 0.2.0
+version: 0.2.0+1
 author: Erick Ghaumez <erick@rxla.bz>
 homepage: https://github.com/rxlabz/speech_recognition
 
