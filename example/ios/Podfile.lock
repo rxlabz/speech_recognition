@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - speech_recognition (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `/Users/rxlabz/dev/tools/flutter/bin/cache/artifacts/engine/ios`)
+  - speech_recognition (from `/Users/rxlabz/dev/projects/fluttrx_plugins/speech_recognition/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: /Users/rxlabz/dev/tools/flutter/bin/cache/artifacts/engine/ios
+  speech_recognition:
+    :path: /Users/rxlabz/dev/projects/fluttrx_plugins/speech_recognition/ios
+
+SPEC CHECKSUMS:
+  Flutter: d674e78c937094a75ac71dd77e921e840bea3dbf
+  speech_recognition: d0911cce91078767d19f03a2db90e15669ea89ce
+
+PODFILE CHECKSUM: cc70c01bca487bebd110b87397f017f3b76a89f1
+
+COCOAPODS: 1.2.0
