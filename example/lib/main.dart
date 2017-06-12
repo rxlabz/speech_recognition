@@ -89,7 +89,7 @@ class _MyAppState extends State<MyApp> {
       ));
 
   void start() => _speech
-      .listen(locale: "en_US")
+      .listen(locale: "fr_FR")
       .then((result) => print('_MyAppState.start => result ${result}'));
 
   void cancel() =>
