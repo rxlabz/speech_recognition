@@ -1,3 +1,5 @@
-## [0.0.1] - TODO: Add release date.
+## 0.2.0+
+- use the device detected locale by default
 
-* TODO: Describe initial release.
+## 0.1.0
+- basic recognition
