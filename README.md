@@ -4,6 +4,10 @@ A flutter plugin to use the speech recognition iOS10+ / Android 4.1+
 
 ![screenshot](screenshot.png)
 
+- [Basic Example](https://github.com/rxlabz/speech_recognition/tree/master/example)
+- [Sytody, speech to todo app](https://github/com/rxlabz/sytody)
+
+
 ## Usage
 
 ```dart
@@ -23,7 +27,7 @@ _speech.setRecognitionStartedHandler(()
   => setState(() => _isListening = true));
 
 // this handler will be called during recognition. 
-// iOs allow to send the intermediate results,
+// the iOS API sends intermediate results,
 // On my Android device, only the final transcription is received
 _speech.setRecognitionResultHandler((String text) 
   => setState(() => transcription = text));
@@ -65,6 +69,12 @@ infos.plist, add :
 <key>NSSpeechRecognitionUsageDescription</key>
 <string>This application needs the speech recognition permission</string>
 ```
+
+#### :warning: Swift project
+
+This plugin is written in swift, so to use with in a Flutter/ObjC project, 
+you need to convert the project to "Current swift syntax" ( Edit/Convert/current swift syntax)  
+
 
 ### Android
 
