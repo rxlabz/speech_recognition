@@ -2,7 +2,7 @@
 
 Demonstrates how to use the speech_recognition plugin.
 
-![screenshot](screenshot.png)
+![screenshot](https://github.com/rxlabz/speech_recognition/blob/master/screenshot.png)
 
 ## Usage
 
