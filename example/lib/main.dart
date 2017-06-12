@@ -63,7 +63,9 @@ class _MyAppState extends State<MyApp> {
                     onPressed: _speechRecognitionAvailable && !_isListening
                         ? () => start()
                         : null,
-                    label: _isListening ? 'Listening...' : 'Listen ($_currentLocale)',
+                    label: _isListening
+                        ? 'Listening...'
+                        : 'Listen ($_currentLocale)',
                   ),
                   _buildButton(
                     onPressed: _isListening ? () => cancel() : null,
@@ -104,7 +106,8 @@ class _MyAppState extends State<MyApp> {
   void onSpeechAvailability(bool result) =>
       setState(() => _speechRecognitionAvailable = result);
 
-  void onCurrentLocale(String locale) => setState(() => _currentLocale = locale);
+  void onCurrentLocale(String locale) =>
+      setState(() => _currentLocale = locale);
 
   void onRecognitionStarted() => setState(() => _isListening = true);
 
