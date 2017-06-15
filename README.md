@@ -2,11 +2,36 @@
 
 A flutter plugin to use the speech recognition iOS10+ / Android 4.1+
 
-![screenshot](screenshot.png)
-
 - [Basic Example](https://github.com/rxlabz/speech_recognition/tree/master/example)
 - [Sytody, speech to todo app](https://github.com/rxlabz/sytody)
 
+![screenshot](speech_reco_shots.png)
+
+## [Installation](https://pub.dartlang.org/packages/speech_recognition#pub-pkg-tab-installing)
+
+1. Depend on it
+Add this to your package's pubspec.yaml file:
+
+```yaml
+dependencies:
+  speech_recognition: "^0.2.0+1"
+```
+
+2. Install it
+You can install packages from the command line:
+
+```
+$ flutter packages get
+```
+
+Alternatively, your editor might support 'packages get'. Check the docs for your editor to learn more.
+
+3. Import it
+Now in your Dart code, you can use:
+
+```dart
+import 'package:speech_recognition/speech_recognition.dart';
+```
 
 ## Usage
 
