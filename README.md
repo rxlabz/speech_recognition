@@ -78,7 +78,10 @@ speech.stop();
 
 ```
 
+### Recognition
 
+- iOS : [Speech API](https://developer.apple.com/reference/speech)
+- Android : [SpeechRecognizer](https://developer.android.com/reference/android/speech/SpeechRecognizer.html)
 
 ## Permissions
 
