@@ -112,6 +112,13 @@ you need to convert the project to "Current swift syntax" ( Edit/Convert/current
 
 ## Limitation
 
+On iOS, by default the plugin is configured for French, English, Russian, Spanish.
+On Android, without additional installations, it will probably works only with the default device locale. 
+
+## Troubleshooting
+
+If you get a MissingPluginException, try to `flutter build apk` on Android, or `flutter build ios`
+
 ## Getting Started
 
 For help getting started with Flutter, view our online
