@@ -14,7 +14,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  speech_recognition: "^0.2.0+1"
+  speech_recognition: "^0.3.0"
 ```
 
 2. Install it
@@ -23,8 +23,6 @@ You can install packages from the command line:
 ```
 $ flutter packages get
 ```
-
-Alternatively, your editor might support 'packages get'. Check the docs for your editor to learn more.
 
 3. Import it
 Now in your Dart code, you can use:
@@ -37,7 +35,7 @@ import 'package:speech_recognition/speech_recognition.dart';
 
 ```dart
 //..
-_speech = new SpeechRecognition();
+_speech = SpeechRecognition();
 
 // The flutter app not only call methods on the host platform,
 // it also needs to receive method calls from host.
@@ -98,11 +96,7 @@ infos.plist, add :
 <string>This application needs the speech recognition permission</string>
 ```
 
-#### :warning: Swift project
-
-This plugin is written in swift, so to use with in a Flutter/ObjC project, 
-you need to convert the project to "Current swift syntax" ( Edit/Convert/current swift syntax)  
-
+#### :warning: iOS : Swift project
 
 ### Android
 
@@ -112,7 +106,7 @@ you need to convert the project to "Current swift syntax" ( Edit/Convert/current
 
 ## Limitation
 
-On iOS, by default the plugin is configured for French, English, Russian, Spanish.
+On iOS, by default the plugin is configured for French, English, Russian, Spanish, Italian.
 On Android, without additional installations, it will probably works only with the default device locale. 
 
 ## Troubleshooting
