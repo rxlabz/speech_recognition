@@ -58,7 +58,7 @@ class SpeechRecognition {
         recognitionCompleteHandler();
         break;
       default:
-        print('Unknowm method ${call.method} ');
+        print('Unknown method ${call.method} ');
     }
   }
 
