@@ -96,7 +96,7 @@ infos.plist, add :
 <string>This application needs the speech recognition permission</string>
 ```
 
-#### :warning: iOS : Swift project
+#### :warning: iOS : Swift 4.2 project
 
 ### Android
 
