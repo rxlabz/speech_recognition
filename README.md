@@ -85,6 +85,8 @@ speech.stop();
 
 ### iOS
 
+#### :warning: iOS : Swift 4.2 project
+
 infos.plist, add :
 - Privacy - Microphone Usage Description
 - Privacy - Speech Recognition Usage Description
@@ -95,8 +97,6 @@ infos.plist, add :
 <key>NSSpeechRecognitionUsageDescription</key>
 <string>This application needs the speech recognition permission</string>
 ```
-
-#### :warning: iOS : Swift 4.2 project
 
 ### Android
 
