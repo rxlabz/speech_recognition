@@ -51,6 +51,7 @@ class _MyAppState extends State<MyApp> {
     _speech.setRecognitionStartedHandler(onRecognitionStarted);
     _speech.setRecognitionResultHandler(onRecognitionResult);
     _speech.setRecognitionCompleteHandler(onRecognitionComplete);
+    _speech.setErrorHandler(errorHandler);
     _speech
         .activate()
         .then((res) => setState(() => _speechRecognitionAvailable = res));
@@ -129,13 +130,14 @@ class _MyAppState extends State<MyApp> {
 
   void start() => _speech
       .listen(locale: selectedLang.code)
-      .then((result) => print('_MyAppState.start => result ${result}'));
+      .then((result) => print('_MyAppState.start => result $result'));
 
   void cancel() =>
       _speech.cancel().then((result) => setState(() => _isListening = result));
 
-  void stop() =>
-      _speech.stop().then((result) => setState(() => _isListening = result));
+  void stop() => _speech.stop().then((result) {
+        setState(() => _isListening = result);
+      });
 
   void onSpeechAvailability(bool result) =>
       setState(() => _speechRecognitionAvailable = result);
@@ -151,4 +153,6 @@ class _MyAppState extends State<MyApp> {
   void onRecognitionResult(String text) => setState(() => transcription = text);
 
   void onRecognitionComplete() => setState(() => _isListening = false);
+
+  void errorHandler() => activateSpeechRecognizer();
 }
