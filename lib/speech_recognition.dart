@@ -43,6 +43,9 @@ class SpeechRecognition {
   /// stop listening
   Future stop() => _channel.invokeMethod("speech.stop");
 
+  // get currentRMS
+  Future getRMS() => _channel.invokeMethod("speech.getRMS");
+
   Future _platformCallHandler(MethodCall call) async {
     print("_platformCallHandler call ${call.method} ${call.arguments}");
     switch (call.method) {

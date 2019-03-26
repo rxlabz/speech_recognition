@@ -28,6 +28,7 @@ public class SpeechRecognitionPlugin implements MethodCallHandler, RecognitionLi
     private String transcription = "";
     private Intent recognizerIntent;
     private Activity activity;
+    private currentRMS = 2.0f;
 
     /**
      * Plugin registration.
@@ -81,6 +82,9 @@ public class SpeechRecognitionPlugin implements MethodCallHandler, RecognitionLi
                 speech.destroy();
                 result.success(true);
                 break;
+            case "speech.getRMS":
+                result.success(currentRMS);
+                break;
             default:
                 result.notImplemented();
                 break;
@@ -107,6 +111,7 @@ public class SpeechRecognitionPlugin implements MethodCallHandler, RecognitionLi
 
     @Override
     public void onRmsChanged(float rmsdB) {
+        currentRMS = rmsdB;
         Log.d(LOG_TAG, "onRmsChanged : " + rmsdB);
     }
 
