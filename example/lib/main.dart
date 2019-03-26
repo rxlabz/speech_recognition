@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
     _speech.setCurrentLocaleHandler(onCurrentLocale);
     _speech.setRecognitionStartedHandler(onRecognitionStarted);
     _speech.setRecognitionResultHandler(onRecognitionResult);
-    _speech.setRecognitionCompleteHandler(onRecognitionComplete);
+    _speech.setRecognitionCompleteHandler((_) => onRecognitionComplete());
     _speech.setErrorHandler(errorHandler);
     _speech
         .activate()
