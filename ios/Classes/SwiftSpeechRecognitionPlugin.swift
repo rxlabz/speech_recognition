@@ -172,7 +172,7 @@ public class SwiftSpeechRecognitionPlugin: NSObject, FlutterPlugin, SFSpeechReco
     case "es_ES":
         return speechRecognizerEs
     default:
-      return speechRecognizerFr
+        return SFSpeechRecognizer(locale: Locale(identifier: lang))!
     }
   }
 
