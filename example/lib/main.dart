@@ -116,7 +116,7 @@ class _MyAppState extends State<MyApp> {
       .toList();
 
   void _selectLangHandler(Language lang) {
-    setState(() => {selectedLang = lang});
+    setState(() => selectedLang = lang);
   }
 
   Widget _buildButton({String label, VoidCallback onPressed}) => new Padding(

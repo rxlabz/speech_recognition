@@ -1,6 +1,6 @@
 ## 0.3.1
 
-- fix android chinese locale error
+- fix android - Correcting problems that are not returned in the language you have called(SpeechRecognitionPlugin:68)
 - fix exmaple code(main.dart:155)
 
 ## 0.3.0
