@@ -1,3 +1,8 @@
+## 0.3.1
+
+- fix android chinese locale error
+- fix exmaple code(main.dart:155)
+
 ## 0.3.0
 
 - dart 2.0+ & Flutter 0.11.8
