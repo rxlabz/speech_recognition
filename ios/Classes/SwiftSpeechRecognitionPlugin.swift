@@ -141,13 +141,13 @@ public class SwiftSpeechRecognitionPlugin: NSObject, FlutterPlugin, SFSpeechReco
 
       if error != nil || isFinal {
         self.audioEngine.stop()
-        inputNode.removeTap(onBus: 0)
         self.recognitionRequest = nil
         self.recognitionTask = nil
       }
     }
 
     let recognitionFormat = inputNode.outputFormat(forBus: 0)
+    inputNode.removeTap(onBus: 0)
     inputNode.installTap(onBus: 0, bufferSize: 1024, format: recognitionFormat) {
       (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
       self.recognitionRequest?.append(buffer)
