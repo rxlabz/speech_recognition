@@ -74,6 +74,9 @@ speech.cancel();
 
 speech.stop();
 
+// Handle recognition errors
+_speech.setErrorHandler((SpeechRecognitionError e) => print('error: $e'));
+
 ```
 
 ### Recognition
