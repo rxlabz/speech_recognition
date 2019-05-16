@@ -15,6 +15,7 @@ public class SwiftSpeechRecognitionPlugin: NSObject, FlutterPlugin, SFSpeechReco
   private let speechRecognizerRu = SFSpeechRecognizer(locale: Locale(identifier: "ru_RU"))!
   private let speechRecognizerIt = SFSpeechRecognizer(locale: Locale(identifier: "it_IT"))!
   private let speechRecognizerEs = SFSpeechRecognizer(locale: Locale(identifier: "es_ES"))!
+  private let speechRecognizerTr = SFSpeechRecognizer(locale: Locale(identifier: "tr_TR"))!
 
   private var speechChannel: FlutterMethodChannel?
 
@@ -51,7 +52,8 @@ public class SwiftSpeechRecognitionPlugin: NSObject, FlutterPlugin, SFSpeechReco
     speechRecognizerRu.delegate = self
     speechRecognizerIt.delegate = self
     speechRecognizerEs.delegate = self
-
+    speechRecognizerTr.delegate = self
+    
     SFSpeechRecognizer.requestAuthorization { authStatus in
       OperationQueue.main.addOperation {
         switch authStatus {
@@ -171,6 +173,8 @@ public class SwiftSpeechRecognitionPlugin: NSObject, FlutterPlugin, SFSpeechReco
       return speechRecognizerIt
     case "es_ES":
         return speechRecognizerEs
+    case "tr_TR", "en_TR":          // if English is added as a second language, it returns en_TR
+        return speechRecognizerTr
     default:
       return speechRecognizerFr
     }
