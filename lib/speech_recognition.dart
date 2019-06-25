@@ -27,8 +27,8 @@ class SpeechRecognition {
   VoidCallback recognitionStartedHandler;
 
   StringResultHandler recognitionCompleteHandler;
-  
-  VoidCallback errorHandler;
+
+  VoidCallback recognitionOnErrorHandler;
 
   /// ask for speech  recognizer permission
   Future activate() => _channel.invokeMethod("speech.activate");
@@ -37,10 +37,8 @@ class SpeechRecognition {
   Future listen({String locale}) =>
       _channel.invokeMethod("speech.listen", locale);
 
-  /// cancel speech
   Future cancel() => _channel.invokeMethod("speech.cancel");
-  
-  /// stop listening
+
   Future stop() => _channel.invokeMethod("speech.stop");
 
   Future _platformCallHandler(MethodCall call) async {
@@ -62,7 +60,7 @@ class SpeechRecognition {
         recognitionCompleteHandler(call.arguments);
         break;
       case "speech.onError":
-        errorHandler();
+        recognitionOnErrorHandler();
         break;
       default:
         print('Unknowm method ${call.method} ');
@@ -85,8 +83,10 @@ class SpeechRecognition {
   void setRecognitionCompleteHandler(StringResultHandler handler) =>
       recognitionCompleteHandler = handler;
 
+  // define a method to handle native call
+  void setRecognitionOnErrorHandler(VoidCallback handler) =>
+      recognitionOnErrorHandler = handler;
+
   void setCurrentLocaleHandler(StringResultHandler handler) =>
       currentLocaleHandler = handler;
-  
-  void setErrorHandler(VoidCallback handler) => errorHandler = handler;
 }
