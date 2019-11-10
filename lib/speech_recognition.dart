@@ -68,25 +68,4 @@ class SpeechRecognition {
         print('Unknowm method ${call.method} ');
     }
   }
-
-  // define a method to handle availability / permission result
-  void setAvailabilityHandler(AvailabilityHandler handler) =>
-      availabilityHandler = handler;
-
-  // define a method to handle recognition result
-  void setRecognitionResultHandler(StringResultHandler handler) =>
-      recognitionResultHandler = handler;
-
-  // define a method to handle native call
-  void setRecognitionStartedHandler(VoidCallback handler) =>
-      recognitionStartedHandler = handler;
-
-  // define a method to handle native call
-  void setRecognitionCompleteHandler(StringResultHandler handler) =>
-      recognitionCompleteHandler = handler;
-
-  void setCurrentLocaleHandler(StringResultHandler handler) =>
-      currentLocaleHandler = handler;
-  
-  void setErrorHandler(VoidCallback handler) => errorHandler = handler;
 }
