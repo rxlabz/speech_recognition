@@ -1,22 +1,28 @@
 PODS:
   - Flutter (1.0.0)
+  - path_provider (0.0.1):
+    - Flutter
   - speech_recognition (0.3.0):
     - Flutter
 
 DEPENDENCIES:
-  - Flutter (from `/Users/rxlabz/dev/tools/flutter/bin/cache/artifacts/engine/ios`)
-  - speech_recognition (from `/Users/rxlabz/dev/projects/_open/speech_recognition/ios`)
+  - Flutter (from `/Users/amemiya/app/flutter/bin/cache/artifacts/engine/ios`)
+  - path_provider (from `/Users/amemiya/app/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.4.0/ios`)
+  - speech_recognition (from `/Users/amemiya/AndroidStudioProjects/custom_plugins/speech_recognition/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
-    :path: "/Users/rxlabz/dev/tools/flutter/bin/cache/artifacts/engine/ios"
+    :path: "/Users/amemiya/app/flutter/bin/cache/artifacts/engine/ios"
+  path_provider:
+    :path: "/Users/amemiya/app/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.4.0/ios"
   speech_recognition:
-    :path: "/Users/rxlabz/dev/projects/_open/speech_recognition/ios"
+    :path: "/Users/amemiya/AndroidStudioProjects/custom_plugins/speech_recognition/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
-  speech_recognition: acf2b916cd7aff5d4b76a238740afe2aff85e6bc
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  path_provider: fb74bd0465e96b594bb3b5088ee4a4e7bb1f2a9d
+  speech_recognition: b5319aace06c3633c0547de44899f6e0bf8b2168
 
 PODFILE CHECKSUM: cc70c01bca487bebd110b87397f017f3b76a89f1
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.3

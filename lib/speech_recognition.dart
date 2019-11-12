@@ -1,6 +1,6 @@
 import 'dart:async';
-
 import 'dart:ui';
+
 import 'package:flutter/services.dart';
 
 typedef void AvailabilityHandler(bool result);
@@ -9,7 +9,7 @@ typedef void StringResultHandler(String text);
 /// the channel to control the speech recognition
 class SpeechRecognition {
   static const MethodChannel _channel =
-      const MethodChannel('speech_recognition');
+      const MethodChannel('mi6ock:speech_recognition');
 
   static final SpeechRecognition _speech = new SpeechRecognition._internal();
 
@@ -27,19 +27,20 @@ class SpeechRecognition {
   VoidCallback recognitionStartedHandler;
 
   StringResultHandler recognitionCompleteHandler;
-  
+
   VoidCallback errorHandler;
 
   /// ask for speech  recognizer permission
   Future activate() => _channel.invokeMethod("speech.activate");
 
   /// start listening
-  Future listen({String locale}) =>
-      _channel.invokeMethod("speech.listen", locale);
+  Future listen(String localfilepath) async {
+    _channel.invokeMethod("speech.listen", localfilepath);
+  }
 
   /// cancel speech
   Future cancel() => _channel.invokeMethod("speech.cancel");
-  
+
   /// stop listening
   Future stop() => _channel.invokeMethod("speech.stop");
 
@@ -87,6 +88,6 @@ class SpeechRecognition {
 
   void setCurrentLocaleHandler(StringResultHandler handler) =>
       currentLocaleHandler = handler;
-  
+
   void setErrorHandler(VoidCallback handler) => errorHandler = handler;
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:speech_recognition/speech_recognition.dart';
 
 void main() {
@@ -6,7 +7,7 @@ void main() {
 }
 
 const languages = const [
-  const Language('Francais', 'fr_FR'),
+  const Language('Japan', 'ja_JP'),
   const Language('English', 'en_US'),
   const Language('Pусский', 'ru_RU'),
   const Language('Italiano', 'it_IT'),
@@ -36,9 +37,17 @@ class _MyAppState extends State<MyApp> {
   //String _currentLocale = 'en_US';
   Language selectedLang = languages.first;
 
+  String _filePath;
+
   @override
   initState() {
     super.initState();
+
+    initFunction();
+  }
+
+  Future<void> initFunction() async {
+    _filePath = (await getApplicationDocumentsDirectory()).path + "/tmp.wav";
     activateSpeechRecognizer();
   }
 
@@ -50,7 +59,7 @@ class _MyAppState extends State<MyApp> {
     _speech.setCurrentLocaleHandler(onCurrentLocale);
     _speech.setRecognitionStartedHandler(onRecognitionStarted);
     _speech.setRecognitionResultHandler(onRecognitionResult);
-    _speech.setRecognitionCompleteHandler(onRecognitionComplete);
+    _speech.setRecognitionCompleteHandler((_) => onRecognitionComplete);
     _speech.setErrorHandler(errorHandler);
     _speech
         .activate()
@@ -129,7 +138,7 @@ class _MyAppState extends State<MyApp> {
       ));
 
   void start() => _speech
-      .listen(locale: selectedLang.code)
+      .listen("${selectedLang.code},${_filePath}")
       .then((result) => print('_MyAppState.start => result $result'));
 
   void cancel() =>
