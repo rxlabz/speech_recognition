@@ -20,12 +20,12 @@ allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 28
     buildToolsVersion '28.0.3'
 
     defaultConfig {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        minSdkVersion = 14
+        minSdkVersion = 28
     }
     lintOptions {
         disable 'InvalidPackage'
