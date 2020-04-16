@@ -59,7 +59,9 @@ class SpeechRecognition {
         recognitionStartedHandler();
         break;
       case "speech.onRecognitionComplete":
-        recognitionCompleteHandler(call.arguments);
+        recognitionCompleteHandler(){
+          recognitionResultHandler(call.arguments);
+        };
         break;
       case "speech.onError":
         errorHandler();
