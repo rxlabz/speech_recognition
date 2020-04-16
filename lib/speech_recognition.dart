@@ -26,7 +26,7 @@ class SpeechRecognition {
 
   VoidCallback recognitionStartedHandler;
 
-  VoidCallback recognitionCompleteHandler;
+  StringResultHandler recognitionCompleteHandler;
   
   VoidCallback errorHandler;
 
@@ -60,7 +60,7 @@ class SpeechRecognition {
         break;
       case "speech.onRecognitionComplete":
         recognitionResultHandler(call.arguments);
-        recognitionCompleteHandler();
+        recognitionCompleteHandler(call.arguments);
         break;
       case "speech.onError":
         errorHandler();
