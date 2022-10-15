@@ -1,3 +1,6 @@
+# :warning: Deprecated
+
+___
 # speech_recognition
 
 A flutter plugin to use the speech recognition iOS10+ / Android 4.1+
