@@ -109,7 +109,7 @@ infos.plist, add :
 
 ## Limitation
 
-On iOS, by default the plugin is configured for French, English, Russian, Spanish, Italian.
+On iOS, by default the plugin is configured for French, English, Russian, Spanish, Italian and Japanese.
 On Android, without additional installations, it will probably works only with the default device locale. 
 
 ## Troubleshooting

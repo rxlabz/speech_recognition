@@ -11,6 +11,7 @@ const languages = const [
   const Language('Pусский', 'ru_RU'),
   const Language('Italiano', 'it_IT'),
   const Language('Español', 'es_ES'),
+  const Language('Japanese', 'ja_JP'),
 ];
 
 class Language {
@@ -26,7 +27,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  SpeechRecognition _speech;
+  late SpeechRecognition _speech;
 
   bool _speechRecognitionAvailable = false;
   bool _isListening = false;
@@ -50,7 +51,7 @@ class _MyAppState extends State<MyApp> {
     _speech.setCurrentLocaleHandler(onCurrentLocale);
     _speech.setRecognitionStartedHandler(onRecognitionStarted);
     _speech.setRecognitionResultHandler(onRecognitionResult);
-    _speech.setRecognitionCompleteHandler(onRecognitionComplete);
+    _speech.setRecognitionCompleteHandler((_) => onRecognitionComplete);
     _speech.setErrorHandler(errorHandler);
     _speech
         .activate()
@@ -117,14 +118,16 @@ class _MyAppState extends State<MyApp> {
     setState(() => selectedLang = lang);
   }
 
-  Widget _buildButton({String label, VoidCallback onPressed}) => new Padding(
+  Widget _buildButton({required String label, VoidCallback? onPressed}) => new Padding(
       padding: new EdgeInsets.all(12.0),
-      child: new RaisedButton(
-        color: Colors.cyan.shade600,
+      child: ElevatedButton(
         onPressed: onPressed,
-        child: new Text(
-          label,
-          style: const TextStyle(color: Colors.white),
+        child: Container(
+          color: Colors.cyan.shade600,
+          child: new Text(
+            label,
+            style: const TextStyle(color: Colors.white),
+          ),
         ),
       ));
 
