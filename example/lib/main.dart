@@ -6,11 +6,13 @@ void main() {
 }
 
 const languages = const [
-  const Language('Francais', 'fr_FR'),
   const Language('English', 'en_US'),
+  const Language('Francais', 'fr_FR'),
   const Language('Pусский', 'ru_RU'),
   const Language('Italiano', 'it_IT'),
   const Language('Español', 'es_ES'),
+  const Language('Simplified Chinese', 'cmn-Hans-CN'),
+  const Language('Japanese', 'ja_JP'),
 ];
 
 class Language {
@@ -128,9 +130,8 @@ class _MyAppState extends State<MyApp> {
         ),
       ));
 
-  void start() => _speech
-      .listen(locale: selectedLang.code)
-      .then((result) => print('_MyAppState.start => result $result'));
+  void start() => _speech.listen(locale: selectedLang.code).then((result) =>
+      print('_MyAppState.start => (' + selectedLang.code + ')result $result'));
 
   void cancel() =>
       _speech.cancel().then((result) => setState(() => _isListening = result));
@@ -152,7 +153,8 @@ class _MyAppState extends State<MyApp> {
 
   void onRecognitionResult(String text) => setState(() => transcription = text);
 
-  void onRecognitionComplete() => setState(() => _isListening = false);
+  void onRecognitionComplete(String text) =>
+      setState(() => _isListening = false);
 
   void errorHandler() => activateSpeechRecognizer();
 }
